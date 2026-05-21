@@ -77,33 +77,492 @@ html, body {
 }
 
 .page-bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   background-size: cover;
   background-position: center;
 }
 
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
 /* Page-specific backgrounds */
 .opening-bg,
 .closing-bg {
-  background: radial-gradient(ellipse at center, #1a1520 0%, #0a0a0a 70%);
+  background: #000;
 }
 
 .story1-bg {
   background: radial-gradient(ellipse at center, #1a1815 0%, #0a0a0a 70%);
 }
 
+/* Poem 1: 따뜻한 봄 톤 (도종환) + 꽃 장식 */
 .poem1-bg {
-  background: radial-gradient(ellipse at center, #151a18 0%, #0a0a0a 70%);
+  background: linear-gradient(160deg, #2a1a1a 0%, #3d2020 30%, #4a2a2a 60%, #352828 100%);
+}
+
+.flower {
+  position: absolute;
+  filter: blur(2px);
+}
+
+.flower-1 {
+  width: 220px;
+  height: 220px;
+  top: 5%;
+  left: 3%;
+  animation: floatSlow 18s ease-in-out infinite;
+}
+
+.flower-2 {
+  width: 180px;
+  height: 180px;
+  bottom: 8%;
+  right: 5%;
+  animation: floatSlow 22s ease-in-out infinite reverse;
+}
+
+.flower-3 {
+  width: 140px;
+  height: 140px;
+  top: 15%;
+  right: 10%;
+  animation: floatSlow 15s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* 떨어지는 꽃잎 */
+.petal {
+  position: absolute;
+  width: 40px;
+  height: 50px;
+}
+
+.petal-1 {
+  top: -5%;
+  left: 20%;
+  animation: petalFall 12s ease-in-out infinite;
+}
+
+.petal-2 {
+  top: -5%;
+  left: 55%;
+  animation: petalFall 16s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+.petal-3 {
+  top: -5%;
+  right: 20%;
+  animation: petalFall 14s ease-in-out infinite;
+  animation-delay: -8s;
+}
+
+.petal-4 {
+  top: -5%;
+  left: 75%;
+  animation: petalFall 18s ease-in-out infinite;
+  animation-delay: -12s;
+}
+
+.petal-5 {
+  top: -5%;
+  left: 10%;
+  animation: petalFall 13s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.petal-6 {
+  top: -5%;
+  left: 40%;
+  animation: petalFall 15s ease-in-out infinite;
+  animation-delay: -6s;
+}
+
+.petal-7 {
+  top: -5%;
+  right: 30%;
+  animation: petalFall 11s ease-in-out infinite;
+  animation-delay: -9s;
+}
+
+.petal-8 {
+  top: -5%;
+  left: 65%;
+  animation: petalFall 17s ease-in-out infinite;
+  animation-delay: -3s;
+}
+
+.petal-9 {
+  top: -5%;
+  left: 85%;
+  animation: petalFall 14s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.petal-10 {
+  top: -5%;
+  left: 30%;
+  animation: petalFall 16s ease-in-out infinite;
+  animation-delay: -11s;
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  33% { transform: translate(10px, -8px) rotate(5deg) scale(1.03); }
+  66% { transform: translate(-8px, 6px) rotate(-3deg) scale(0.98); }
+}
+
+@keyframes petalFall {
+  0% { transform: translate(0, -20px) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translate(-40px, 110vh) rotate(360deg); opacity: 0; }
 }
 
 .story2-bg {
   background: radial-gradient(ellipse at center, #181518 0%, #0a0a0a 70%);
 }
 
+/* Poem 2: 고요한 밤하늘 (김용택 — 어느 날) */
 .poem2-bg {
-  background: radial-gradient(ellipse at center, #1a1818 0%, #0a0a0a 70%);
+  background: linear-gradient(180deg, #0a0a14 0%, #0e1020 40%, #141828 70%, #0a0c16 100%);
+}
+
+/* 별 반짝임 — 레이어 1 (밝은 별) */
+.poem2-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(3px 3px at 10% 15%, #fff, transparent),
+    radial-gradient(2px 2px at 25% 8%, #e0e8ff, transparent),
+    radial-gradient(3px 3px at 40% 22%, #fff, transparent),
+    radial-gradient(2px 2px at 55% 5%, #d0d8f0, transparent),
+    radial-gradient(4px 4px at 70% 18%, #fff, transparent),
+    radial-gradient(2px 2px at 85% 12%, #e0e8ff, transparent),
+    radial-gradient(3px 3px at 15% 35%, #fff, transparent),
+    radial-gradient(2px 2px at 92% 28%, #d8e0ff, transparent),
+    radial-gradient(3px 3px at 48% 42%, #fff, transparent),
+    radial-gradient(2px 2px at 5% 50%, #e0e8ff, transparent),
+    radial-gradient(4px 4px at 78% 45%, #fff, transparent),
+    radial-gradient(2px 2px at 33% 55%, #d0d8f0, transparent),
+    radial-gradient(3px 3px at 62% 60%, #fff, transparent),
+    radial-gradient(2px 2px at 88% 52%, #e0e8ff, transparent),
+    radial-gradient(4px 4px at 20% 70%, #fff, transparent),
+    radial-gradient(2px 2px at 45% 78%, #d8e0ff, transparent),
+    radial-gradient(3px 3px at 72% 72%, #fff, transparent),
+    radial-gradient(2px 2px at 95% 68%, #e0e8ff, transparent),
+    radial-gradient(2px 2px at 8% 85%, #fff, transparent),
+    radial-gradient(3px 3px at 55% 90%, #d0d8f0, transparent),
+    radial-gradient(2px 2px at 30% 92%, #fff, transparent),
+    radial-gradient(3px 3px at 82% 88%, #e0e8ff, transparent),
+    radial-gradient(2px 2px at 65% 95%, #fff, transparent),
+    radial-gradient(4px 4px at 18% 48%, #fff, transparent),
+    radial-gradient(2px 2px at 50% 30%, #d8e0ff, transparent);
+  animation: twinkle1 3s ease-in-out infinite alternate;
+}
+
+/* 별 반짝임 — 레이어 2 (시차 반짝임) */
+.poem2-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(2px 2px at 18% 20%, #fff, transparent),
+    radial-gradient(3px 3px at 35% 12%, #e0e8ff, transparent),
+    radial-gradient(2px 2px at 52% 32%, #fff, transparent),
+    radial-gradient(4px 4px at 68% 8%, #fff, transparent),
+    radial-gradient(2px 2px at 80% 38%, #d8e0ff, transparent),
+    radial-gradient(3px 3px at 12% 58%, #fff, transparent),
+    radial-gradient(2px 2px at 42% 65%, #e0e8ff, transparent),
+    radial-gradient(4px 4px at 58% 48%, #fff, transparent),
+    radial-gradient(2px 2px at 75% 62%, #d0d8f0, transparent),
+    radial-gradient(3px 3px at 90% 42%, #fff, transparent),
+    radial-gradient(2px 2px at 28% 75%, #fff, transparent),
+    radial-gradient(3px 3px at 60% 82%, #e0e8ff, transparent),
+    radial-gradient(2px 2px at 85% 78%, #fff, transparent),
+    radial-gradient(2px 2px at 38% 88%, #d8e0ff, transparent),
+    radial-gradient(3px 3px at 15% 95%, #fff, transparent);
+  animation: twinkle2 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle1 {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+@keyframes twinkle2 {
+  0% { opacity: 0.8; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0.9; }
+}
+
+/* ===== 어느 날 — 달 ===== */
+.moon-rise {
+  position: absolute;
+  top: 8%;
+  right: 12%;
+  animation: moonRise 4s ease-out forwards;
+}
+
+.moon-body {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f0f0ff, #d8dce8);
+  box-shadow:
+    0 0 30px 10px rgba(200, 210, 240, 0.3),
+    0 0 80px 30px rgba(180, 195, 230, 0.15),
+    0 0 140px 60px rgba(170, 185, 220, 0.08);
+}
+
+.moon-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,210,240,0.15) 0%, transparent 70%);
+  animation: moonPulse 5s ease-in-out infinite;
+}
+
+@keyframes moonRise {
+  0% { transform: translateY(60px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes moonPulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+/* ===== 어느 날 — 유성 ===== */
+.shooting-star {
+  position: absolute;
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.8), transparent);
+  border-radius: 2px;
+  opacity: 0;
+  transform: rotate(-35deg);
+}
+
+.ss-1 {
+  top: 12%;
+  left: 25%;
+  animation: shoot 8s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.ss-2 {
+  top: 25%;
+  left: 60%;
+  width: 80px;
+  animation: shoot 12s ease-in-out infinite;
+  animation-delay: 7s;
+}
+
+.ss-3 {
+  top: 8%;
+  left: 45%;
+  width: 100px;
+  animation: shoot 15s ease-in-out infinite;
+  animation-delay: 12s;
+}
+
+@keyframes shoot {
+  0%, 90%, 100% { opacity: 0; transform: rotate(-35deg) translateX(0); }
+  93% { opacity: 1; }
+  97% { opacity: 1; transform: rotate(-35deg) translateX(300px); }
+  98% { opacity: 0; transform: rotate(-35deg) translateX(350px); }
+}
+
+/* ===== 어느 날 — 오로라 ===== */
+.aurora {
+  position: absolute;
+  width: 100%;
+  height: 40%;
+  top: 0;
+  left: 0;
+  opacity: 0.08;
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.aurora-1 {
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(100, 140, 200, 0.5) 35%,
+    rgba(80, 160, 180, 0.4) 50%,
+    rgba(120, 100, 200, 0.3) 65%,
+    transparent 80%
+  );
+  animation: auroraWave 12s ease-in-out infinite;
+}
+
+.aurora-2 {
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    rgba(80, 120, 200, 0.4) 40%,
+    rgba(100, 180, 160, 0.3) 55%,
+    rgba(140, 100, 180, 0.2) 70%,
+    transparent 85%
+  );
+  animation: auroraWave 16s ease-in-out infinite reverse;
+  animation-delay: -4s;
+}
+
+@keyframes auroraWave {
+  0%, 100% { transform: translateX(-5%) scaleY(1); opacity: 0.06; }
+  50% { transform: translateX(5%) scaleY(1.2); opacity: 0.12; }
+}
+
+/* ===== 어느 날 — 안개/구름 ===== */
+.cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(180,190,210,0.06), transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.cloud-1 {
+  width: 600px;
+  height: 150px;
+  bottom: 25%;
+  left: -10%;
+  animation: cloudDrift 30s linear infinite;
+}
+
+.cloud-2 {
+  width: 500px;
+  height: 120px;
+  bottom: 35%;
+  left: -20%;
+  animation: cloudDrift 40s linear infinite;
+  animation-delay: -15s;
+  opacity: 0.7;
+}
+
+.cloud-3 {
+  width: 450px;
+  height: 100px;
+  bottom: 20%;
+  left: -15%;
+  animation: cloudDrift 35s linear infinite;
+  animation-delay: -8s;
+  opacity: 0.5;
+}
+
+@keyframes cloudDrift {
+  0% { transform: translateX(-100px); }
+  100% { transform: translateX(calc(100vw + 200px)); }
+}
+
+/* ===== 어느 날 — 반딧불이 ===== */
+.firefly {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffcc;
+  box-shadow: 0 0 6px 3px rgba(255, 255, 180, 0.5), 0 0 15px 6px rgba(255, 255, 150, 0.2);
+}
+
+.ff-1 { top: 30%; left: 15%; animation: fireflyFloat 8s ease-in-out infinite, fireflyGlow 3s ease-in-out infinite; }
+.ff-2 { top: 50%; left: 80%; animation: fireflyFloat 10s ease-in-out infinite reverse, fireflyGlow 4s ease-in-out infinite; animation-delay: -2s; }
+.ff-3 { top: 65%; left: 25%; animation: fireflyFloat 12s ease-in-out infinite, fireflyGlow 3.5s ease-in-out infinite; animation-delay: -4s; }
+.ff-4 { top: 40%; left: 60%; animation: fireflyFloat 9s ease-in-out infinite reverse, fireflyGlow 2.5s ease-in-out infinite; animation-delay: -6s; }
+.ff-5 { top: 75%; left: 45%; animation: fireflyFloat 11s ease-in-out infinite, fireflyGlow 4s ease-in-out infinite; animation-delay: -1s; }
+.ff-6 { top: 20%; left: 70%; animation: fireflyFloat 7s ease-in-out infinite reverse, fireflyGlow 3s ease-in-out infinite; animation-delay: -3s; }
+.ff-7 { top: 55%; left: 10%; animation: fireflyFloat 13s ease-in-out infinite, fireflyGlow 3.5s ease-in-out infinite; animation-delay: -5s; }
+.ff-8 { top: 35%; left: 90%; animation: fireflyFloat 8s ease-in-out infinite reverse, fireflyGlow 4s ease-in-out infinite; animation-delay: -7s; }
+
+@keyframes fireflyFloat {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30px, -20px); }
+  50% { transform: translate(-15px, -35px); }
+  75% { transform: translate(20px, 10px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes fireflyGlow {
+  0%, 100% { opacity: 0.2; box-shadow: 0 0 4px 2px rgba(255,255,180,0.3); }
+  50% { opacity: 1; box-shadow: 0 0 10px 5px rgba(255,255,180,0.6), 0 0 25px 10px rgba(255,255,150,0.25); }
+}
+
+/* ===== 어느 날 — 빛 입자 (올라감) ===== */
+.light-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(200, 210, 255, 0.8);
+  box-shadow: 0 0 4px 2px rgba(200, 210, 255, 0.3);
+}
+
+.lp-1 { bottom: 10%; left: 20%; animation: particleRise 10s linear infinite; }
+.lp-2 { bottom: 10%; left: 40%; animation: particleRise 12s linear infinite; animation-delay: -3s; }
+.lp-3 { bottom: 10%; left: 60%; animation: particleRise 14s linear infinite; animation-delay: -6s; }
+.lp-4 { bottom: 10%; left: 75%; animation: particleRise 11s linear infinite; animation-delay: -2s; }
+.lp-5 { bottom: 10%; left: 35%; animation: particleRise 13s linear infinite; animation-delay: -8s; }
+.lp-6 { bottom: 10%; left: 85%; animation: particleRise 15s linear infinite; animation-delay: -5s; }
+
+@keyframes particleRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 0.8; }
+  80% { opacity: 0.6; }
+  100% { transform: translateY(-80vh) scale(0.3); opacity: 0; }
+}
+
+/* ===== 어느 날 — 물결 반사 ===== */
+.water-reflect {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 18%;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(100, 120, 180, 0.03) 30%,
+    rgba(80, 110, 170, 0.06) 60%,
+    rgba(60, 100, 160, 0.08) 100%
+  );
+  animation: waterShimmer 6s ease-in-out infinite;
+  mask-image: linear-gradient(180deg, transparent, black 40%);
+  -webkit-mask-image: linear-gradient(180deg, transparent, black 40%);
+}
+
+.water-reflect::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      rgba(180, 200, 240, 0.04) 2px,
+      transparent 4px
+    );
+  animation: waterRipple 4s linear infinite;
+}
+
+@keyframes waterShimmer {
+  0%, 100% { opacity: 0.6; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(1.05); }
+}
+
+@keyframes waterRipple {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(20px); }
 }
 
 .page-content {
@@ -116,26 +575,6 @@ html, body {
 
 .center-content {
   text-align: center;
-}
-
-/* === Opening === */
-.opening-title {
-  font-size: 4.5rem;
-  font-weight: 800;
-  line-height: 1.3;
-  letter-spacing: 0.05em;
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1.5s ease 0.3s forwards;
-}
-
-.opening-sub {
-  font-size: 1.6rem;
-  color: rgba(240, 236, 228, 0.5);
-  letter-spacing: 0.3em;
-  opacity: 0;
-  animation: fadeUp 1.5s ease 0.8s forwards;
 }
 
 /* === Postcard === */
@@ -179,11 +618,43 @@ html, body {
   margin: 0 auto;
 }
 
+.poem-left {
+  text-align: left;
+}
+
 .poem-title {
   font-size: 2.8rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   letter-spacing: 0.05em;
+}
+
+/* Poem 1 title color (warm) */
+[data-page="3"] .poem-title {
+  color: #ffd4c8;
+  text-shadow: 0 2px 16px rgba(255, 120, 100, 0.15);
+}
+
+[data-page="3"] .poem-author {
+  color: rgba(255, 180, 160, 0.45);
+}
+
+[data-page="3"] .poem-body p {
+  color: #f0dcd4;
+  text-shadow: 0 1px 6px rgba(60, 20, 20, 0.4);
+}
+
+/* Poem 2 title color (cool) */
+[data-page="5"] .poem-title {
+  color: #e0e0e0;
+}
+
+[data-page="5"] .poem-author {
+  color: #505058;
+}
+
+[data-page="5"] .poem-body p {
+  color: #c8c8d0;
 }
 
 .poem-author {
@@ -193,6 +664,10 @@ html, body {
   letter-spacing: 0.2em;
 }
 
+.poem-body {
+  position: relative;
+}
+
 .poem-body p {
   font-size: 1.8rem;
   line-height: 2.2;
@@ -200,23 +675,44 @@ html, body {
   letter-spacing: 0.02em;
 }
 
-.placeholder-text {
-  color: rgba(240, 236, 228, 0.3);
-  font-style: italic;
+.poem-break {
+  line-height: 1 !important;
 }
 
-/* === Closing === */
-.closing-title {
-  font-size: 4rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.05em;
+/* === Poem scroll animation === */
+.poem-scroll-page {
+  overflow-y: auto;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15vh 0;
 }
 
-.closing-sub {
-  font-size: 1.6rem;
-  color: rgba(240, 236, 228, 0.5);
-  letter-spacing: 0.1em;
+.poem-scroll-page .poem-body p {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.poem-scroll-page .poem-body p.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.poem-scroll-page .poem-body p.poem-break.visible {
+  opacity: 0;
+}
+
+/* Title/author fade in on poem pages */
+.poem-scroll-page.active .poem-title,
+.poem-scroll-page.active .poem-author {
+  opacity: 0;
+  animation: fadeUp 1s ease 0.1s forwards;
+}
+
+.poem-scroll-page:not(.active) .poem-title,
+.poem-scroll-page:not(.active) .poem-author {
+  opacity: 0;
+  animation: none;
 }
 
 /* === Navigation === */
@@ -270,55 +766,6 @@ html, body {
   }
 }
 
-/* Poem lines staggered entrance */
-.page.active .poem-body p {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: fadeUp 0.8s ease forwards;
-}
-
-.page.active .poem-body p:nth-child(1) { animation-delay: 0.3s; }
-.page.active .poem-body p:nth-child(2) { animation-delay: 0.5s; }
-.page.active .poem-body p:nth-child(3) { animation-delay: 0.7s; }
-.page.active .poem-body p:nth-child(4) { animation-delay: 0.9s; }
-.page.active .poem-body p:nth-child(5) { animation-delay: 1.1s; }
-.page.active .poem-body p:nth-child(6) { animation-delay: 1.3s; }
-.page.active .poem-body p:nth-child(7) { animation-delay: 1.5s; }
-.page.active .poem-body p:nth-child(8) { animation-delay: 1.7s; }
-.page.active .poem-body p:nth-child(9) { animation-delay: 1.9s; }
-.page.active .poem-body p:nth-child(10) { animation-delay: 2.1s; }
-.page.active .poem-body p:nth-child(11) { animation-delay: 2.3s; }
-
-.page.active .poem-title,
-.page.active .poem-author {
-  opacity: 0;
-  animation: fadeUp 1s ease 0.1s forwards;
-}
-
-.page.active .closing-title {
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeUp 1.5s ease 0.3s forwards;
-}
-
-.page.active .closing-sub {
-  opacity: 0;
-  animation: fadeUp 1.5s ease 0.8s forwards;
-}
-
-/* Reset animations when not active */
-.page:not(.active) .poem-body p,
-.page:not(.active) .poem-title,
-.page:not(.active) .poem-author,
-.page:not(.active) .opening-title,
-.page:not(.active) .opening-sub,
-.page:not(.active) .closing-title,
-.page:not(.active) .closing-sub {
-  opacity: 0;
-  transform: translateY(15px);
-  animation: none;
-}
-
 /* === Fullscreen === */
 body:-webkit-full-screen #nav-hint,
 body:fullscreen #nav-hint {
@@ -327,15 +774,11 @@ body:fullscreen #nav-hint {
 
 /* === Responsive (projector safe) === */
 @media (min-width: 1920px) {
-  .opening-title { font-size: 6rem; }
   .poem-body p { font-size: 2.2rem; }
   .poem-title { font-size: 3.5rem; }
-  .closing-title { font-size: 5.5rem; }
 }
 
 @media (max-width: 768px) {
-  .opening-title { font-size: 2.5rem; }
   .poem-body p { font-size: 1.2rem; line-height: 2; }
   .poem-title { font-size: 2rem; }
-  .closing-title { font-size: 2.5rem; }
 }

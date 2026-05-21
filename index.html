@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>꽃, 그리고 우리의 이야기</title>
+  <title>달이 빛나는 밤에 — SANS FM</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
@@ -18,15 +18,16 @@
   <div id="presentation" class="hidden">
     <!-- Page 1: Opening -->
     <section class="page active" data-page="1" data-music="radio-signal" data-music-action="play">
-      <div class="page-bg opening-bg"></div>
+      <div class="page-bg opening-bg">
+        <img src="assets/images/opening-closing.jpg" alt="" class="bg-image">
+      </div>
       <div class="page-content center-content">
-        <h1 class="opening-title">꽃, 그리고<br>우리의 이야기</h1>
-        <p class="opening-sub">SANS 시 낭송회</p>
+        <!-- 이미지 자체가 타이틀 역할 — 오프닝 멘트용 화면 -->
       </div>
     </section>
 
     <!-- Page 2: Story 1 (의선 손글씨 엽서) -->
-    <section class="page" data-page="2" data-music="radio-signal" data-music-action="continue">
+    <section class="page" data-page="2" data-music="radio-signal" data-music-action="fadeout">
       <div class="page-bg story1-bg"></div>
       <div class="page-content center-content">
         <div class="postcard-frame">
@@ -39,25 +40,88 @@
       </div>
     </section>
 
-    <!-- Page 3: Poem 1 - 흔들리는 꽃들속에서 -->
-    <section class="page" data-page="3" data-music="swaying-flowers" data-music-action="crossfade">
-      <div class="page-bg poem1-bg"></div>
+    <!-- Page 3: Poem 1 - 흔들리며 피는 꽃 (도종환) -->
+    <section class="page poem-scroll-page" data-page="3" data-music="swaying-flowers" data-music-action="crossfade">
+      <div class="page-bg poem1-bg">
+        <!-- 꽃잎 SVG 장식 -->
+        <svg class="flower flower-1" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.25" fill="#ffb4a0">
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(0 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(72 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(144 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(216 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(288 60 60)"/>
+            <circle cx="60" cy="60" r="10" fill="#ffd4c0" opacity="0.6"/>
+          </g>
+        </svg>
+        <svg class="flower flower-2" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.18" fill="#ffc8b8">
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(0 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(72 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(144 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(216 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(288 60 60)"/>
+            <circle cx="60" cy="60" r="10" fill="#ffe0d4" opacity="0.5"/>
+          </g>
+        </svg>
+        <svg class="flower flower-3" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <g opacity="0.15" fill="#ff9080">
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(15 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(87 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(159 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(231 60 60)"/>
+            <ellipse cx="60" cy="30" rx="18" ry="28" transform="rotate(303 60 60)"/>
+            <circle cx="60" cy="60" r="10" fill="#ffc4b0" opacity="0.5"/>
+          </g>
+        </svg>
+        <!-- 떨어지는 꽃잎들 -->
+        <svg class="petal petal-1" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="10" ry="18" fill="#ffb4a0" opacity="0.25" transform="rotate(-20 15 20)"/>
+        </svg>
+        <svg class="petal petal-2" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="8" ry="15" fill="#ffc8b8" opacity="0.2" transform="rotate(15 15 20)"/>
+        </svg>
+        <svg class="petal petal-3" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="9" ry="16" fill="#ff9888" opacity="0.22" transform="rotate(-10 15 20)"/>
+        </svg>
+        <svg class="petal petal-4" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="7" ry="14" fill="#ffd4c0" opacity="0.18" transform="rotate(25 15 20)"/>
+        </svg>
+        <svg class="petal petal-5" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="11" ry="17" fill="#ffb4a0" opacity="0.2" transform="rotate(-30 15 20)"/>
+        </svg>
+        <svg class="petal petal-6" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="8" ry="14" fill="#ffc0b0" opacity="0.22" transform="rotate(20 15 20)"/>
+        </svg>
+        <svg class="petal petal-7" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="9" ry="15" fill="#ffb8a4" opacity="0.18" transform="rotate(-15 15 20)"/>
+        </svg>
+        <svg class="petal petal-8" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="10" ry="16" fill="#ffd0c0" opacity="0.15" transform="rotate(10 15 20)"/>
+        </svg>
+        <svg class="petal petal-9" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="7" ry="13" fill="#ff9888" opacity="0.2" transform="rotate(-25 15 20)"/>
+        </svg>
+        <svg class="petal petal-10" viewBox="0 0 30 40" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="15" cy="20" rx="9" ry="17" fill="#ffc8b8" opacity="0.17" transform="rotate(30 15 20)"/>
+        </svg>
+      </div>
       <div class="page-content center-content">
         <div class="poem">
-          <h2 class="poem-title">흔들리는 꽃들 속에서</h2>
+          <h2 class="poem-title">흔들리며 피는 꽃</h2>
           <p class="poem-author">도종환</p>
-          <div class="poem-body">
+          <div class="poem-body" data-scroll-poem>
             <p>흔들리지 않고 피는 꽃이 어디 있으랴</p>
             <p>이 세상 그 어떤 아름다운 꽃들도</p>
             <p>다 흔들리면서 피었나니</p>
             <p>흔들리면서 줄기를 곧게 세웠나니</p>
             <p>흔들리지 않고 가는 사랑이 어디 있으랴</p>
-            <p>&nbsp;</p>
+            <p class="poem-break">&nbsp;</p>
             <p>젖지 않고 피는 꽃이 어디 있으랴</p>
             <p>이 세상 그 어떤 빛나는 꽃들도</p>
-            <p>다 젖으며 피었나니</p>
-            <p>바람과 비에 젖으며 꽃잎 피웠나니</p>
-            <p>젖지 않고 가는 사랑이 어디 있으랴</p>
+            <p>다 젖으며 젖으며 피었나니</p>
+            <p>바람과 비에 젖으며 꽃잎 따뜻하게 피웠나니</p>
+            <p>젖지 않고 가는 삶이 어디 있으랴</p>
           </div>
         </div>
       </div>
@@ -77,15 +141,61 @@
       </div>
     </section>
 
-    <!-- Page 5: Poem 2 - 좋은날 -->
-    <section class="page" data-page="5" data-music="good-day" data-music-action="crossfade">
-      <div class="page-bg poem2-bg"></div>
+    <!-- Page 5: Poem 2 - 어느 날 (김용택) -->
+    <section class="page poem-scroll-page" data-page="5" data-music="good-day" data-music-action="crossfade">
+      <div class="page-bg poem2-bg">
+        <!-- 달 -->
+        <div class="moon-rise">
+          <div class="moon-glow"></div>
+          <div class="moon-body"></div>
+        </div>
+        <!-- 유성 -->
+        <div class="shooting-star ss-1"></div>
+        <div class="shooting-star ss-2"></div>
+        <div class="shooting-star ss-3"></div>
+        <!-- 오로라 -->
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <!-- 안개/구름 -->
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <!-- 반딧불이 -->
+        <div class="firefly ff-1"></div>
+        <div class="firefly ff-2"></div>
+        <div class="firefly ff-3"></div>
+        <div class="firefly ff-4"></div>
+        <div class="firefly ff-5"></div>
+        <div class="firefly ff-6"></div>
+        <div class="firefly ff-7"></div>
+        <div class="firefly ff-8"></div>
+        <!-- 빛 입자 -->
+        <div class="light-particle lp-1"></div>
+        <div class="light-particle lp-2"></div>
+        <div class="light-particle lp-3"></div>
+        <div class="light-particle lp-4"></div>
+        <div class="light-particle lp-5"></div>
+        <div class="light-particle lp-6"></div>
+        <!-- 물결 반사 -->
+        <div class="water-reflect"></div>
+      </div>
       <div class="page-content center-content">
-        <div class="poem">
-          <h2 class="poem-title">좋은날</h2>
-          <p class="poem-author">&nbsp;</p>
-          <div class="poem-body">
-            <p class="placeholder-text">[시 텍스트 대기 중]</p>
+        <div class="poem poem-left">
+          <h2 class="poem-title">어느 날</h2>
+          <p class="poem-author">김용택</p>
+          <div class="poem-body" data-scroll-poem>
+            <p>나는</p>
+            <p>어느 날이라는 말이 좋다.</p>
+            <p class="poem-break">&nbsp;</p>
+            <p>어느 날 나는 태어났고</p>
+            <p>어느 날 당신도 만났으니깐.</p>
+            <p class="poem-break">&nbsp;</p>
+            <p>그리고</p>
+            <p>오늘도 어느 날이니깐.</p>
+            <p class="poem-break">&nbsp;</p>
+            <p>나의 시는</p>
+            <p>어느 날의 일이고</p>
+            <p>어느 날에 썼다.</p>
           </div>
         </div>
       </div>
@@ -93,10 +203,11 @@
 
     <!-- Page 6: Closing -->
     <section class="page" data-page="6" data-music="radio-signal" data-music-action="crossfade">
-      <div class="page-bg closing-bg"></div>
+      <div class="page-bg closing-bg">
+        <img src="assets/images/opening-closing.jpg" alt="" class="bg-image">
+      </div>
       <div class="page-content center-content">
-        <h1 class="closing-title">감사합니다</h1>
-        <p class="closing-sub">꽃처럼, 흔들리며 피어나는 우리</p>
+        <!-- 이미지 자체가 클로징 화면 — 감성멘트용 -->
       </div>
     </section>
 
