@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>꽃, 그리고 우리의 이야기</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="start-screen">
+    <div class="start-content">
+      <p class="start-hint">화면을 클릭하여 시작</p>
+    </div>
+  </div>
+
+  <div id="presentation" class="hidden">
+    <!-- Page 1: Opening -->
+    <section class="page active" data-page="1" data-music="radio-signal" data-music-action="play">
+      <div class="page-bg opening-bg"></div>
+      <div class="page-content center-content">
+        <h1 class="opening-title">꽃, 그리고<br>우리의 이야기</h1>
+        <p class="opening-sub">SANS 시 낭송회</p>
+      </div>
+    </section>
+
+    <!-- Page 2: Story 1 (의선 손글씨 엽서) -->
+    <section class="page" data-page="2" data-music="radio-signal" data-music-action="continue">
+      <div class="page-bg story1-bg"></div>
+      <div class="page-content center-content">
+        <div class="postcard-frame">
+          <img src="assets/images/postcard-1.jpg" alt="사연 1 손글씨 엽서" class="postcard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="postcard-placeholder">
+            <p>손글씨 엽서</p>
+            <p class="placeholder-sub">의선님 이미지 대기 중</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 3: Poem 1 - 흔들리는 꽃들속에서 -->
+    <section class="page" data-page="3" data-music="swaying-flowers" data-music-action="crossfade">
+      <div class="page-bg poem1-bg"></div>
+      <div class="page-content center-content">
+        <div class="poem">
+          <h2 class="poem-title">흔들리는 꽃들 속에서</h2>
+          <p class="poem-author">도종환</p>
+          <div class="poem-body">
+            <p>흔들리지 않고 피는 꽃이 어디 있으랴</p>
+            <p>이 세상 그 어떤 아름다운 꽃들도</p>
+            <p>다 흔들리면서 피었나니</p>
+            <p>흔들리면서 줄기를 곧게 세웠나니</p>
+            <p>흔들리지 않고 가는 사랑이 어디 있으랴</p>
+            <p>&nbsp;</p>
+            <p>젖지 않고 피는 꽃이 어디 있으랴</p>
+            <p>이 세상 그 어떤 빛나는 꽃들도</p>
+            <p>다 젖으며 피었나니</p>
+            <p>바람과 비에 젖으며 꽃잎 피웠나니</p>
+            <p>젖지 않고 가는 사랑이 어디 있으랴</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 4: Story 2 (정헌 손글씨 엽서) -->
+    <section class="page" data-page="4" data-music="swaying-flowers" data-music-action="fadeout">
+      <div class="page-bg story2-bg"></div>
+      <div class="page-content center-content">
+        <div class="postcard-frame">
+          <img src="assets/images/postcard-2.jpg" alt="사연 2 손글씨 엽서" class="postcard-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="postcard-placeholder">
+            <p>손글씨 엽서</p>
+            <p class="placeholder-sub">정헌님 이미지 대기 중</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 5: Poem 2 - 좋은날 -->
+    <section class="page" data-page="5" data-music="good-day" data-music-action="crossfade">
+      <div class="page-bg poem2-bg"></div>
+      <div class="page-content center-content">
+        <div class="poem">
+          <h2 class="poem-title">좋은날</h2>
+          <p class="poem-author">&nbsp;</p>
+          <div class="poem-body">
+            <p class="placeholder-text">[시 텍스트 대기 중]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Page 6: Closing -->
+    <section class="page" data-page="6" data-music="radio-signal" data-music-action="crossfade">
+      <div class="page-bg closing-bg"></div>
+      <div class="page-content center-content">
+        <h1 class="closing-title">감사합니다</h1>
+        <p class="closing-sub">꽃처럼, 흔들리며 피어나는 우리</p>
+      </div>
+    </section>
+
+    <!-- Navigation -->
+    <div id="nav-hint">
+      <span class="nav-key">←</span> <span class="nav-key">→</span> 또는 스페이스바로 이동
+    </div>
+    <div id="page-indicator"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
