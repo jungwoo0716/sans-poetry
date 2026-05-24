@@ -97,19 +97,36 @@ html, body {
   background: #000;
 }
 
-/* 사연 1: 꽃 편지지 — 핑크/로즈 톤 배경 */
-.story1-bg {
-  background: radial-gradient(ellipse at 50% 50%, #2e1a24 0%, #1e1018 60%, #100a10 100%);
+/* === 사연 공통: 블러 배경 === */
+.story-blur-bg {
+  position: absolute;
+  inset: -40px;
+  width: calc(100% + 80px);
+  height: calc(100% + 80px);
+  object-fit: cover;
+  object-position: center;
+  filter: blur(30px) brightness(0.35) saturate(1.3);
+  z-index: 0;
 }
-.story1-bg::before {
-  content: '';
+
+.story-blur-overlay {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 45%, rgba(200,120,150,0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 20% 70%, rgba(180,100,140,0.1) 0%, transparent 45%),
-    radial-gradient(ellipse at 80% 30%, rgba(220,140,170,0.08) 0%, transparent 40%);
+  z-index: 1;
   pointer-events: none;
+}
+
+.story1-overlay {
+  background: radial-gradient(ellipse at 50% 50%, rgba(40,20,30,0.3) 0%, rgba(20,10,15,0.6) 100%);
+}
+
+.story2-overlay {
+  background: radial-gradient(ellipse at 50% 50%, rgba(40,30,15,0.3) 0%, rgba(20,15,8,0.6) 100%);
+}
+
+/* 사연 1: 꽃 편지지 */
+.story1-bg {
+  background: #100a10;
 }
 
 /* 사연1 — 빛 파티클 (느리게 떠다님) */
@@ -277,19 +294,9 @@ html, body {
   100% { transform: translate(-40px, 110vh) rotate(360deg); opacity: 0; }
 }
 
-/* 사연 2: 크라프트지 — 따뜻한 세피아/카라멜 톤 */
+/* 사연 2: 크라프트지 */
 .story2-bg {
-  background: radial-gradient(ellipse at 50% 50%, #2a1e10 0%, #1a1208 60%, #0e0a04 100%);
-}
-.story2-bg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 50% 45%, rgba(210,170,100,0.2) 0%, transparent 55%),
-    radial-gradient(ellipse at 25% 65%, rgba(190,140,80,0.12) 0%, transparent 45%),
-    radial-gradient(ellipse at 75% 35%, rgba(220,180,110,0.08) 0%, transparent 40%);
-  pointer-events: none;
+  background: #0e0a04;
 }
 
 /* 사연2 — 따뜻한 보케 (둥근 빛 원) */
