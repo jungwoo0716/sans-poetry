@@ -187,15 +187,23 @@
 
     const isPoemPage = next.classList.contains('poem-scroll-page');
     const isManual = next.dataset.musicAction === 'manual';
+    const hasMusic = next.dataset.music;
 
-    if (isPoemPage || isManual) {
-      // 시 페이지 or 수동 페이지: 기존 음악 끄기
+    if (isPoemPage) {
+      // 시 페이지: 기존 음악 끄기, 시 끝나면 스페이스바로 재생
       if (activeTrack) {
         fadeOut(activeTrack).then(() => { activeTrack = null; });
       }
-      if (isManual) {
-        // 클로징 등: 바로 음악 대기 상태
-        poemFinished = true;
+    } else if (isManual) {
+      // 클로징 등: 기존 음악 끄기, 스페이스바 대기
+      if (activeTrack) {
+        fadeOut(activeTrack).then(() => { activeTrack = null; });
+      }
+      poemFinished = true;
+    } else if (!hasMusic) {
+      // 사연 페이지 등 음악 없는 페이지: 기존 음악 페이드아웃
+      if (activeTrack) {
+        fadeOut(activeTrack).then(() => { activeTrack = null; });
       }
     } else {
       // 일반 페이지: 자동 재생
