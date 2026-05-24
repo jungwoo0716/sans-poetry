@@ -176,12 +176,18 @@
     currentPage = num;
     updateIndicator();
 
-    // 시 페이지(3, 5)는 기존 음악 끄고, 시가 끝난 후 새 음악 시작
+    // 시 페이지 or manual 페이지: 기존 음악 끄고 스페이스바 대기
     const isPoemPage = next.classList.contains('poem-scroll-page');
+    const isManual = next.dataset.musicAction === 'manual';
     if (isPoemPage) {
       if (activeTrack) {
         fadeOut(activeTrack).then(() => { activeTrack = null; });
       }
+    } else if (isManual) {
+      if (activeTrack) {
+        fadeOut(activeTrack).then(() => { activeTrack = null; });
+      }
+      poemFinished = true; // 스페이스바 누르면 음악 재생
     } else {
       handleMusic(next);
     }
