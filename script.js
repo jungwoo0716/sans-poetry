@@ -1,13 +1,15 @@
 (() => {
   const FADE_DURATION = 1500;
-  const POEM_LINE_INTERVAL = 2500; // ms between each line (흔들리며 피는 꽃)
-  const POEM2_LINE_INTERVAL = 800; // ms between each line (어느 날)
+  const POEM_LINE_INTERVAL = 2500;
+  const POEM2_LINE_INTERVAL = 800;
   const pages = document.querySelectorAll('.page');
   const totalPages = pages.length;
   let currentPage = 1;
   let transitioning = false;
   let poemTimers = [];
-  let poemFinished = false; // 시 낭독 끝난 후 스페이스바로 음악 시작
+  let poemAnimating = false;  // 시 줄이 나오는 중
+  let poemFinished = false;   // 시 전부 표시됨, 음악 대기
+  let musicPlaying = false;   // 음악 재생 중
 
   // === Audio ===
   const tracks = {};
@@ -63,41 +65,25 @@
     });
   }
 
-  function handleMusic(page) {
+  function playPageMusic(page) {
     const trackName = page.dataset.music;
     const action = page.dataset.musicAction;
     const newTrack = tracks[trackName];
     if (!newTrack) return;
 
-    switch (action) {
-      case 'play':
-        if (activeTrack && activeTrack !== newTrack) fadeOut(activeTrack);
-        activeTrack = newTrack;
-        fadeIn(newTrack);
-        break;
-      case 'continue':
-        if (activeTrack !== newTrack) {
-          if (activeTrack) fadeOut(activeTrack);
-          activeTrack = newTrack;
-          fadeIn(newTrack);
-        }
-        break;
-      case 'crossfade':
-        if (activeTrack && activeTrack !== newTrack) {
-          fadeOut(activeTrack);
-          activeTrack = newTrack;
-          fadeIn(newTrack);
-        } else if (!activeTrack || activeTrack.paused) {
-          activeTrack = newTrack;
-          fadeIn(newTrack);
-        }
-        break;
-      case 'fadeout':
-        if (activeTrack) {
-          fadeOut(activeTrack).then(() => { activeTrack = null; });
-        }
-        break;
+    // play-once: loop 끄기
+    if (action === 'play-once') {
+      newTrack.loop = false;
+    } else {
+      newTrack.loop = true;
     }
+
+    if (activeTrack && activeTrack !== newTrack) {
+      fadeOut(activeTrack);
+    }
+    activeTrack = newTrack;
+    fadeIn(newTrack);
+    musicPlaying = true;
   }
 
   // === Poem scroll animation ===
@@ -106,11 +92,32 @@
     poemTimers = [];
   }
 
+  // 남은 줄 전부 즉시 표시
+  function finishPoemImmediately(page) {
+    clearPoemTimers();
+    const poemBody = page.querySelector('[data-scroll-poem]');
+    if (!poemBody) return;
+    const lines = poemBody.querySelectorAll('p');
+    lines.forEach(l => l.classList.add('visible'));
+    // 마지막 줄로 스크롤
+    const lastLine = lines[lines.length - 1];
+    if (lastLine) {
+      requestAnimationFrame(() => {
+        lastLine.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    poemAnimating = false;
+    poemFinished = true;
+  }
+
   function startPoemScroll(page) {
     const poemBody = page.querySelector('[data-scroll-poem]');
     if (!poemBody) return;
     const lines = poemBody.querySelectorAll('p');
     lines.forEach(l => l.classList.remove('visible'));
+
+    poemAnimating = true;
+    poemFinished = false;
 
     const pageNum = page.dataset.page;
     const interval = pageNum === '5' ? POEM2_LINE_INTERVAL : POEM_LINE_INTERVAL;
@@ -123,9 +130,10 @@
           line.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
-        // 마지막 줄이 나타나면 → 스페이스바 대기 상태로 전환
+        // 마지막 줄
         if (i === lines.length - 1) {
           const readyTimer = setTimeout(() => {
+            poemAnimating = false;
             poemFinished = true;
           }, 1000);
           poemTimers.push(readyTimer);
@@ -139,7 +147,6 @@
     const poemBody = page.querySelector('[data-scroll-poem]');
     if (!poemBody) return;
     poemBody.querySelectorAll('p').forEach(l => l.classList.remove('visible'));
-    // Scroll back to top
     page.scrollTop = 0;
   }
 
@@ -165,7 +172,9 @@
     if (num < 1 || num > totalPages || num === currentPage || transitioning) return;
     transitioning = true;
     clearPoemTimers();
+    poemAnimating = false;
     poemFinished = false;
+    musicPlaying = false;
 
     const current = document.querySelector(`.page[data-page="${currentPage}"]`);
     const next = document.querySelector(`.page[data-page="${num}"]`);
@@ -176,40 +185,47 @@
     currentPage = num;
     updateIndicator();
 
-    // 시 페이지 or manual 페이지: 기존 음악 끄고 스페이스바 대기
     const isPoemPage = next.classList.contains('poem-scroll-page');
     const isManual = next.dataset.musicAction === 'manual';
-    if (isPoemPage) {
-      if (activeTrack) {
-        fadeOut(activeTrack).then(() => { activeTrack = null; });
-      }
-    } else if (isManual) {
-      if (activeTrack) {
-        fadeOut(activeTrack).then(() => { activeTrack = null; });
-      }
-      poemFinished = true; // 스페이스바 누르면 음악 재생
-    } else {
-      handleMusic(next);
-    }
-    startPoemScroll(next);
 
+    if (isPoemPage || isManual) {
+      // 시 페이지 or 수동 페이지: 기존 음악 끄기
+      if (activeTrack) {
+        fadeOut(activeTrack).then(() => { activeTrack = null; });
+      }
+      if (isManual) {
+        // 클로징 등: 바로 음악 대기 상태
+        poemFinished = true;
+      }
+    } else {
+      // 일반 페이지: 자동 재생
+      playPageMusic(next);
+    }
+
+    startPoemScroll(next);
     setTimeout(() => { transitioning = false; }, 1300);
   }
 
   function next() { if (currentPage < totalPages) goToPage(currentPage + 1); }
   function prev() { if (currentPage > 1) goToPage(currentPage - 1); }
 
-  // Keyboard
+  // === Keyboard ===
   document.addEventListener('keydown', (e) => {
     switch (e.key) {
       case ' ':
         e.preventDefault();
-        if (poemFinished) {
-          // 시 끝난 후 스페이스바 → 음악 재생
+        if (poemAnimating) {
+          // 시 진행 중 → 남은 줄 전부 즉시 표시
+          const curEl = document.querySelector(`.page[data-page="${currentPage}"]`);
+          finishPoemImmediately(curEl);
+        } else if (poemFinished) {
+          // 시 전부 표시됨 → 음악 재생
           poemFinished = false;
-          const currentEl = document.querySelector(`.page[data-page="${currentPage}"]`);
-          handleMusic(currentEl);
+          musicPlaying = true;
+          const curEl = document.querySelector(`.page[data-page="${currentPage}"]`);
+          playPageMusic(curEl);
         } else {
+          // 그 외 → 다음 페이지
           next();
         }
         break;
@@ -222,6 +238,23 @@
       case 'PageUp':
         e.preventDefault();
         prev();
+        break;
+      case 'm':
+      case 'M':
+        // 백업: 현재 페이지 BGM 재생/재시작
+        if (!e.metaKey && !e.ctrlKey) {
+          e.preventDefault();
+          const curEl = document.querySelector(`.page[data-page="${currentPage}"]`);
+          const tName = curEl.dataset.music;
+          const t = tracks[tName];
+          if (t) {
+            t.pause();
+            t.currentTime = 0;
+            activeTrack = t;
+            fadeIn(t);
+            musicPlaying = true;
+          }
+        }
         break;
       case 'f':
       case 'F':
@@ -255,7 +288,7 @@
 
     setTimeout(() => {
       const firstPage = document.querySelector('.page.active');
-      handleMusic(firstPage);
+      playPageMusic(firstPage);
       startPoemScroll(firstPage);
       startScreen.remove();
     }, 800);

@@ -97,18 +97,18 @@ html, body {
   background: #000;
 }
 
-/* 사연 1: 꽃 편지지 — 편지지 흰색/핑크에 어울리는 따뜻한 배경 */
+/* 사연 1: 꽃 편지지 — 핑크 꽃 테두리에 어울리는 로즈 톤 */
 .story1-bg {
-  background: radial-gradient(ellipse at 50% 50%, #2a2028 0%, #1a1420 50%, #0e0a14 100%);
+  background: radial-gradient(ellipse at 50% 50%, #1e1218 0%, #160e14 50%, #0c080c 100%);
 }
 .story1-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 50%, rgba(220,180,200,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 30% 70%, rgba(180,140,180,0.05) 0%, transparent 40%),
-    radial-gradient(ellipse at 70% 30%, rgba(200,160,190,0.04) 0%, transparent 40%);
+    radial-gradient(ellipse at 50% 50%, rgba(200,140,160,0.1) 0%, transparent 55%),
+    radial-gradient(ellipse at 25% 65%, rgba(180,120,150,0.06) 0%, transparent 45%),
+    radial-gradient(ellipse at 75% 35%, rgba(220,160,180,0.05) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -236,18 +236,18 @@ html, body {
   100% { transform: translate(-40px, 110vh) rotate(360deg); opacity: 0; }
 }
 
-/* 사연 2: 크라프트지 — 크라프트 갈색에 어울리는 따뜻한 배경 */
+/* 사연 2: 크라프트지 — 따뜻한 세피아/카라멜 톤 */
 .story2-bg {
-  background: radial-gradient(ellipse at 50% 50%, #221a10 0%, #18120a 50%, #0a0806 100%);
+  background: radial-gradient(ellipse at 50% 50%, #201810 0%, #16100a 50%, #0c0a06 100%);
 }
 .story2-bg::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 50%, rgba(200,160,100,0.08) 0%, transparent 50%),
-    radial-gradient(ellipse at 40% 60%, rgba(180,140,80,0.05) 0%, transparent 40%),
-    radial-gradient(ellipse at 60% 40%, rgba(210,170,110,0.04) 0%, transparent 40%);
+    radial-gradient(ellipse at 50% 50%, rgba(210,170,110,0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 35% 60%, rgba(190,150,90,0.07) 0%, transparent 45%),
+    radial-gradient(ellipse at 65% 40%, rgba(220,180,120,0.05) 0%, transparent 40%);
   pointer-events: none;
 }
 
@@ -612,7 +612,16 @@ html, body {
   max-width: 100%;
   max-height: 80vh;
   border-radius: 4px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 60px rgba(0, 0, 0, 0.25);
+}
+
+/* 사연별 이미지 글로우 */
+[data-page="2"] .postcard-img {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 80px rgba(200, 140, 160, 0.08);
+}
+
+[data-page="4"] .postcard-img {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), 0 0 80px rgba(200, 160, 100, 0.08);
 }
 
 .postcard-placeholder {
