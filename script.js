@@ -7,6 +7,7 @@
   let currentPage = 1;
   let transitioning = false;
   let poemTimers = [];
+  let poemFinished = false; // 시 낭독 끝난 후 스페이스바로 음악 시작
 
   // === Audio ===
   const tracks = {};
@@ -122,12 +123,12 @@
           line.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });
 
-        // 마지막 줄이 나타나면 음악 시작
+        // 마지막 줄이 나타나면 → 스페이스바 대기 상태로 전환
         if (i === lines.length - 1) {
-          const musicTimer = setTimeout(() => {
-            handleMusic(page);
-          }, 1500); // 마지막 줄 나온 후 1.5초 뒤 음악
-          poemTimers.push(musicTimer);
+          const readyTimer = setTimeout(() => {
+            poemFinished = true;
+          }, 1000);
+          poemTimers.push(readyTimer);
         }
       }, 800 + i * interval);
       poemTimers.push(timer);
@@ -164,6 +165,7 @@
     if (num < 1 || num > totalPages || num === currentPage || transitioning) return;
     transitioning = true;
     clearPoemTimers();
+    poemFinished = false;
 
     const current = document.querySelector(`.page[data-page="${currentPage}"]`);
     const next = document.querySelector(`.page[data-page="${num}"]`);
@@ -194,8 +196,18 @@
   // Keyboard
   document.addEventListener('keydown', (e) => {
     switch (e.key) {
-      case 'ArrowRight':
       case ' ':
+        e.preventDefault();
+        if (poemFinished) {
+          // 시 끝난 후 스페이스바 → 음악 재생
+          poemFinished = false;
+          const currentEl = document.querySelector(`.page[data-page="${currentPage}"]`);
+          handleMusic(currentEl);
+        } else {
+          next();
+        }
+        break;
+      case 'ArrowRight':
       case 'PageDown':
         e.preventDefault();
         next();
