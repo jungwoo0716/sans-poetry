@@ -112,6 +112,47 @@ html, body {
   pointer-events: none;
 }
 
+/* 사연1 — 빛 파티클 (느리게 떠다님) */
+.story-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #e8b0c0;
+  box-shadow: 0 0 6px 3px rgba(232,176,192,0.3), 0 0 15px 6px rgba(232,160,180,0.1);
+}
+
+.sp-1 { top: 20%; left: 10%; animation: spFloat 10s ease-in-out infinite, fireflyGlow 4s ease-in-out infinite; }
+.sp-2 { top: 60%; left: 85%; animation: spFloat 13s ease-in-out infinite reverse, fireflyGlow 3.5s ease-in-out infinite; animation-delay: -2s; }
+.sp-3 { top: 40%; left: 5%; animation: spFloat 11s ease-in-out infinite, fireflyGlow 3s ease-in-out infinite; animation-delay: -4s; }
+.sp-4 { top: 75%; left: 15%; animation: spFloat 9s ease-in-out infinite reverse, fireflyGlow 4.5s ease-in-out infinite; animation-delay: -6s; }
+.sp-5 { top: 15%; left: 90%; animation: spFloat 14s ease-in-out infinite, fireflyGlow 3s ease-in-out infinite; animation-delay: -1s; }
+.sp-6 { top: 50%; left: 92%; animation: spFloat 12s ease-in-out infinite reverse, fireflyGlow 3.5s ease-in-out infinite; animation-delay: -3s; }
+.sp-7 { top: 80%; left: 80%; animation: spFloat 8s ease-in-out infinite, fireflyGlow 4s ease-in-out infinite; animation-delay: -5s; }
+.sp-8 { top: 30%; left: 88%; animation: spFloat 15s ease-in-out infinite reverse, fireflyGlow 3s ease-in-out infinite; animation-delay: -7s; }
+
+@keyframes spFloat {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(20px, -15px); }
+  50% { transform: translate(-10px, -30px); }
+  75% { transform: translate(15px, 10px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* 사연1 — 떨어지는 꽃잎 */
+.story-petal {
+  position: absolute;
+  width: 35px;
+  height: 45px;
+}
+
+.stp-1 { top: -5%; left: 5%; animation: petalFall 14s ease-in-out infinite; }
+.stp-2 { top: -5%; left: 88%; animation: petalFall 18s ease-in-out infinite; animation-delay: -3s; }
+.stp-3 { top: -5%; left: 15%; animation: petalFall 16s ease-in-out infinite; animation-delay: -7s; }
+.stp-4 { top: -5%; left: 92%; animation: petalFall 20s ease-in-out infinite; animation-delay: -10s; }
+.stp-5 { top: -5%; left: 8%; animation: petalFall 15s ease-in-out infinite; animation-delay: -5s; }
+.stp-6 { top: -5%; left: 85%; animation: petalFall 17s ease-in-out infinite; animation-delay: -12s; }
+
 /* Poem 1: 따뜻한 봄 톤 (도종환) + 꽃 장식 */
 .poem1-bg {
   background: linear-gradient(160deg, #2a1a1a 0%, #3d2020 30%, #4a2a2a 60%, #352828 100%);
@@ -249,6 +290,58 @@ html, body {
     radial-gradient(ellipse at 25% 65%, rgba(190,140,80,0.12) 0%, transparent 45%),
     radial-gradient(ellipse at 75% 35%, rgba(220,180,110,0.08) 0%, transparent 40%);
   pointer-events: none;
+}
+
+/* 사연2 — 따뜻한 보케 (둥근 빛 원) */
+.warm-bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,180,120,0.12) 0%, transparent 70%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.wb-1 { width: 120px; height: 120px; top: 10%; left: 5%; animation: bokehFloat 12s ease-in-out infinite; }
+.wb-2 { width: 80px; height: 80px; top: 60%; left: 88%; animation: bokehFloat 16s ease-in-out infinite reverse; animation-delay: -3s; }
+.wb-3 { width: 100px; height: 100px; bottom: 15%; left: 8%; animation: bokehFloat 14s ease-in-out infinite; animation-delay: -6s; }
+.wb-4 { width: 60px; height: 60px; top: 25%; right: 8%; animation: bokehFloat 10s ease-in-out infinite reverse; animation-delay: -9s; }
+.wb-5 { width: 90px; height: 90px; top: 45%; left: 3%; animation: bokehFloat 18s ease-in-out infinite; animation-delay: -2s; }
+.wb-6 { width: 70px; height: 70px; bottom: 30%; right: 5%; animation: bokehFloat 13s ease-in-out infinite reverse; animation-delay: -7s; }
+
+@keyframes bokehFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  25% { transform: translate(15px, -10px) scale(1.1); opacity: 0.8; }
+  50% { transform: translate(-10px, 15px) scale(0.9); opacity: 0.6; }
+  75% { transform: translate(8px, -5px) scale(1.05); opacity: 1; }
+}
+
+/* 사연2 — 먼지/빛 입자 (천천히 올라감) */
+.dust-mote {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: rgba(220, 190, 140, 0.7);
+  box-shadow: 0 0 4px 2px rgba(220, 190, 140, 0.25);
+}
+
+.dm-1 { bottom: 5%; left: 8%; animation: dustRise 12s linear infinite, fireflyGlow 3s ease-in-out infinite; }
+.dm-2 { bottom: 5%; left: 90%; animation: dustRise 15s linear infinite; animation-delay: -2s; }
+.dm-3 { bottom: 5%; left: 5%; animation: dustRise 10s linear infinite; animation-delay: -5s; }
+.dm-4 { bottom: 5%; left: 92%; animation: dustRise 14s linear infinite; animation-delay: -8s; }
+.dm-5 { bottom: 5%; left: 12%; animation: dustRise 11s linear infinite; animation-delay: -3s; }
+.dm-6 { bottom: 5%; left: 85%; animation: dustRise 16s linear infinite; animation-delay: -6s; }
+.dm-7 { bottom: 5%; left: 3%; animation: dustRise 13s linear infinite; animation-delay: -1s; }
+.dm-8 { bottom: 5%; left: 95%; animation: dustRise 17s linear infinite; animation-delay: -9s; }
+.dm-9 { bottom: 5%; left: 7%; animation: dustRise 14s linear infinite; animation-delay: -4s; }
+.dm-10 { bottom: 5%; left: 88%; animation: dustRise 12s linear infinite; animation-delay: -7s; }
+
+@keyframes dustRise {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(-40vh) translateX(10px) scale(0.8); opacity: 0.8; }
+  80% { opacity: 0.4; }
+  100% { transform: translateY(-85vh) translateX(-5px) scale(0.3); opacity: 0; }
 }
 
 /* Poem 2: 고요한 밤하늘 (김용택 — 어느 날) */
